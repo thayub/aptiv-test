@@ -5,4 +5,3 @@ module.exports = {
     carsData: [],// car locations and its availability
     time: 2
   };
-  

@@ -32,4 +32,15 @@ exports.initialProcessData = (config) => {
     console.log(functionData);
   };
 
+/**
+ * Get the present available cars from the memory
+ * @return {Promise} -> Array of the cars []
+ */
 
+exports.getEmptyCars = () => {
+
+    const carArray = new Promise((resolve, reject) => {
+        resolve(functionData.carsData.filter(car => car.available === true));
+    });
+    return carArray;
+}
