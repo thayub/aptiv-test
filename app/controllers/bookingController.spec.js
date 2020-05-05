@@ -13,7 +13,7 @@ describe('test POST /api/book', () => {
             .then((res) => {
                 console.log(res.body);
                 console.log("-=-=-=-=-=-=-");
-                expect(res.body.message).toBe('Missing source');
+                expect(res.body.message).toBe('The input is malformed, kindly check the structure');
                 done();
             });
     });

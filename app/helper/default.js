@@ -58,5 +58,32 @@ exports.calculateDist = (source, destination) => {
 
 
 
+/**
+ * Reset the JSON data which holds the car details
+ * @return {Promise} - The final JSON data which is resolved to initial values.
+ */
+exports.resetCarDetails = () => {
+    return new Promise((resolve, reject) => {
+        for (let i = 0; i < functionData.carsData.length; i += 1) {
+            functionData.carsData[i] = this.initCar(i);
+        }
+        resolve(true);
+    });
+};
 
-exports.calculateDist
+/**
+ * Set the function data object with a state that needs to be super imposed
+ * @param {Object} - The current state of the system which needs to be set.
+ * @return Nothing to return, internal state change
+ */
+exports.setFunctionData = (currentStateData) => {
+    functionData = currentStateData;
+}
+/**
+ * Get the current functionData representing the current state of the app
+ * @param null
+ * @return {Object} Returns the current functionData Object indicating the current data state of the application
+ */
+exports.getFunctionData = () => {
+    return functionData;
+}
