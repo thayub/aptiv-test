@@ -71,6 +71,58 @@ exports.resetCarDetails = () => {
     });
 };
 
+
+
+/**
+ * increment the service timeUp by 1
+ * Which moves the system into the future by 1 unit/second every time it is called.
+ * - Decrease the time remaining in each car by 1 unit to advance them
+ * - If the time remaining is 0, then make the car available.
+ * @return {Promise}
+ */
+exports.incrementTimeUnit = () => {
+    return new Promise((resolve, reject) => {
+        // increment the service up time
+        serviceData.timeServiceUp += 1;
+        // update cars
+        serviceData.carData.forEach((car, i) => {
+            if (car.timeRemaining > 0) {
+                car.timeRemaining -= 1;
+            }
+            if (car.timeRemaining === 0) {
+                car.available = true;
+            }
+        });
+        resolve(serviceData.timeServiceUp);
+    });
+};
+
+
+/**
+ * Booking a car
+ * 1. set available to false
+ * 2. set its position to the final trip position
+ * 3. set its time to the total length of its journey time , since it will be blocked during those time
+ * @param {Integer} - carId
+ * @param {Object} - final grid position { x: , y: }
+ * @param {Integer} - time for which it is booked, ie total journey time
+ * @return {Promise} - Promise object which resolves after updating the Data JSON
+ */
+exports.bookCar = (carId, finalGridPosition, bookingTime) => {
+    return new Promise((resolve, reject) => {
+        this.getCarById(carId).then((car) => {
+            // updating car details
+            car.available = false;
+            car.x = finalGridPosition.x;
+            car.y = finalGridPosition.y;
+            car.time = bookingTime;
+            resolve(true);
+        });
+    });
+}
+
+
+
 /**
  * Set the function data object with a state that needs to be super imposed
  * @param {Object} - The current state of the system which needs to be set.
@@ -87,3 +139,16 @@ exports.setFunctionData = (currentStateData) => {
 exports.getFunctionData = () => {
     return functionData;
 }
+
+/**
+ * Get car by id
+ * @param  {Integer} - carId
+ * @return {Promise} - The car object from the functionData in memory
+ */
+exports.getCarById = (carId) => {
+    const carData = new Promise((resolve, reject) => {
+        resolve(functionData.carsData.find(car => car.id === carId));
+    });
+
+    return carData;
+};

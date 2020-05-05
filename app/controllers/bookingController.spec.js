@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../../app');
-const bookingController = require('./bookingContoller');
+const bookingController = require('./bookingController');
 const helpers = require('../../app/helper/default');
 
 
