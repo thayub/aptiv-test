@@ -20,6 +20,7 @@
     "express-joi-validation": "^4.0.3",
     "http-errors": "^1.7.3",
     "jest": "^25.4.0",
+    "manhattan": "^1.0.0",
     "minimist": "^1.2.5",
     "minimist-options": "^4.0.2",
     "morgan": "^1.10.0",

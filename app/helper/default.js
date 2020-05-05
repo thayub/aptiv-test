@@ -44,3 +44,19 @@ exports.getEmptyCars = () => {
     });
     return carArray;
 }
+/**
+ * Distance between 2 points in a 2D matrix
+ * @param  {Object} Source { x1 , y1 }
+ * @param  {Object} Destination { x2 , y2 }
+ * @return {Integer} - The computed distance between A and B
+ */
+exports.calculateDist = (source, destination) => {
+    // Using the following formula : Distance in 2D  = √[( y2 –  y1)² + ( x1 –  x2)²]
+    // https://www.npmjs.com/package/manhattan [REFERENCE]
+    return Math.abs((destination.y - source.y) + (destination.x - source.x));
+};
+
+
+
+
+exports.calculateDist
