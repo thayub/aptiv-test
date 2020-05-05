@@ -71,6 +71,25 @@ exports.resetCarDetails = () => {
     });
 };
 
+/**
+ * Update time service for the system by 1 tick
+ * For each car:
+ * - Reduce the time in total journey time
+ * - Set eligible cars to available if their time is zero
+ * @return {Promise}  Object which will be resolved
+ */
+exports.incrementTimeFn = () => {
+    return new Promise((resolve , reject) => {
+        functionData.timeUp++;
+        functionData.carsData.forEach((eachCar, n) => {
+            if(eachCar.time > 0)
+                eachCar.time--;
+            if(eachCar.time === 0)
+                eachCar.available == true;
+        });
+        resolve(functionData.timeUp);
+    });
+};
 
 
 /**
