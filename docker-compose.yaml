@@ -1,0 +1,14 @@
+version: "3"
+services:
+  app:
+    container_name: taxi-system
+    restart: "always"
+    build: .
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: "bridge"

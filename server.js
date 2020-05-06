@@ -1,5 +1,5 @@
 const app = require('./app');
 
-app.listen(3000, () => {
-  console.log('\nThe app is available on port 3000');
+app.listen(8080, () => {
+  console.log('\nThe app is available on port 8080');
 });
