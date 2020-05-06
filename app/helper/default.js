@@ -82,10 +82,10 @@ exports.incrementTimeFn = () => {
     return new Promise((resolve , reject) => {
         functionData.timeUp++;
         functionData.carsData.forEach((eachCar, n) => {
-            if(eachCar.time > 0)
-                eachCar.time--;
-            if(eachCar.time === 0)
-                eachCar.available == true;
+            if(eachCar.timeRemaining > 0)
+                eachCar.timeRemaining--;
+            if(eachCar.timeRemaining === 0)
+                eachCar.available = true;
         });
         resolve(functionData.timeUp);
     });
@@ -134,7 +134,7 @@ exports.bookCar = (carId, finalGridPosition, bookingTime) => {
             car.available = false;
             car.x = finalGridPosition.x;
             car.y = finalGridPosition.y;
-            car.time = bookingTime;
+            car.timeRemaining = bookingTime;
             resolve(true);
         });
     });
