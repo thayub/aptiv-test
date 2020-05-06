@@ -1,0 +1,214 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Taxi System : API ",
+    "description": "Taxi application for the Aptiv test",
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/book": {
+      "post": {
+        "summary": "Create new booking",
+        "parameters": [
+          {
+            "name": "CreateBookingRequest",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateBookingRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successfully booking request",
+            "schema": {
+              "$ref": "#/definitions/CreateBookingResponse"
+            }
+          },
+          "400": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "booking"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/tick": {
+      "post": {
+        "summary": "Simulate time clock, to stamp time by 1 unit",
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "booking"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/reset": {
+      "put": {
+        "summary": "Reset all car state to initial state",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "booking"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/status": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    }
+
+  },
+  "definitions": {
+    "Location": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "description": "X co-ordinate in a 2D grid system",
+          "example": 0
+        },
+        "y": {
+          "type": "number",
+          "description": "Y co-ordinate in a 2D grid system",
+          "example": 0
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ]
+    },
+    "CreateBookingRequest": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "title": "Location",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Location"
+            },
+            {
+              "description": "Source location in X, Y co-ordinates"
+            }
+          ]
+        },
+        "destination": {
+          "title": "Location",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Location"
+            },
+            {
+              "description": "Destination location in X, Y co-ordinates"
+            }
+          ]
+        }
+      },
+      "required": [
+        "source",
+        "destination"
+      ]
+    },
+    "CreateBookingResponse": {
+      "type": "object",
+      "properties": {
+        "car_id": {
+          "type": "number",
+          "description": "Car ID",
+          "example": 0
+        },
+        "total_time": {
+          "type": "number",
+          "description": "Total time for the car to travel to passenger location and to the final destination",
+          "example": 0
+        }
+      }
+    },
+    "SuccessResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "Request status",
+          "example": true
+        }
+      },
+      "required": [
+        "success"
+      ]
+    }
+  }
+}
