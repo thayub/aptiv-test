@@ -8,7 +8,7 @@ const schema = Joi.object().keys({
     destination: Joi.required()
 });
 
-const createBooking =  (req, res, next) => {
+exports.createBooking =  (req, res, next) => {
     console.log("iInside the controller");
     const result = schema.validate(req.body);
 
@@ -21,16 +21,10 @@ const createBooking =  (req, res, next) => {
         let minimumCarDistance = Infinity;
         let minimumCarId = null;
         helperFn.getEmptyCars().then((availableCars) => {
-            // console.log("availableCarsavailableCarsavailableCarsavailableCarsavailableCars");
-            // console.log(availableCars);
-            // console.log(req.body.source);
-            // console.log(req.body.destination);
 
             // Finding the distance with all the cars and the source given by the user
             availableCars.forEach((eachCar) => {
                 const carDist = helperFn.calculateDist(eachCar, req.body.source);
-                console.log("each car distance");
-                console.log(carDist + '-----------'+ eachCar.id);
 
                 // Choose the car Id with the least car ID and distance
                 if (carDist < minimumCarDistance) {
@@ -73,7 +67,3 @@ exports.currentState = (req, res, next) => {
         result : result
     });
 }
-
-
-
-exports.createBooking = createBooking;

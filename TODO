@@ -1,0 +1,11 @@
+- time until last reset
+- JOI schema to check x, y in the incoming json
+- spec for
+    - tick
+    - booking
+    - helper
+- helper break up
+- helper break up and spec
+- services breakup
+- services spec
+- Adding Jenkins file
