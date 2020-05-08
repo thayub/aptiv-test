@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "lint:check": "node_modules/eslint/bin/eslint.js .",
-    "test": "jest"
+    "test": "jest --collectCoverage"
   },
   "keywords": [],
   "author": "Thayub",
@@ -26,5 +26,10 @@
     "morgan": "^1.10.0",
     "supertest": "^4.0.2",
     "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "coverage-node": "^2.0.3",
+    "mocha": "^7.1.2"
   }
 }

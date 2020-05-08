@@ -23,10 +23,9 @@ exports.initCar = (id) => {
  */
 exports.initialProcessData = (config) => {
     functionData = config;
-    console.log(functionData);
+
 
     for (let i = 0; i < config.cars; i += 1) {
-        console.log(this.initCar(i));
         functionData.carsData.push(this.initCar(i));
     }
     console.log(functionData);
@@ -64,9 +63,13 @@ exports.calculateDist = (source, destination) => {
  */
 exports.resetCarDetails = () => {
     return new Promise((resolve, reject) => {
+        console.log(functionData);
+        console.log("----------");
         for (let i = 0; i < functionData.carsData.length; i += 1) {
             functionData.carsData[i] = this.initCar(i);
         }
+        // This will serve as time since last reset
+        functionData.time = functionData.timeUp - functionData.time;
         resolve(true);
     });
 };
@@ -91,30 +94,6 @@ exports.incrementTimeFn = () => {
     });
 };
 
-
-/**
- * increment the service timeUp by 1
- * Which moves the system into the future by 1 unit/second every time it is called.
- * - Decrease the time remaining in each car by 1 unit to advance them
- * - If the time remaining is 0, then make the car available.
- * @return {Promise}
- */
-exports.incrementTimeUnit = () => {
-    return new Promise((resolve, reject) => {
-        // increment the service up time
-        serviceData.timeServiceUp += 1;
-        // update cars
-        serviceData.carData.forEach((car, i) => {
-            if (car.timeRemaining > 0) {
-                car.timeRemaining -= 1;
-            }
-            if (car.timeRemaining === 0) {
-                car.available = true;
-            }
-        });
-        resolve(serviceData.timeServiceUp);
-    });
-};
 
 
 /**
