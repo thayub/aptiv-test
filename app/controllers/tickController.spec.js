@@ -8,7 +8,7 @@ describe('test POST /api/tick', () => {
         // CURRENT STATE TO BE CHECKED WITH
         const stateCheck = {
             timeUp: 4,
-            initPosition: [0, 0],
+            initialPosition: [0, 0],
             cars: 2,
             carsData: [
                 {
