@@ -27,7 +27,7 @@ describe('test POST /api/reset', () => {
 
         // Calling the reset API now
         request(app)
-            .post('/api/reset')
+            .put('/api/reset')
             .send()
             .expect(200)
             .then((res) => {
