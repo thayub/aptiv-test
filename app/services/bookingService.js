@@ -2,6 +2,34 @@ const helperFn = require('../services/default');
 
 
 
+exports.createBooking = (req, res) => {
+
+    this.getEmptyCars().then((availableCars) => {
+        minimumCarDetails = this.getMinimumCarDetails(availableCars, req.body.source);
+        if (minimumCarDetails.car_id != null){
+
+            const totalJourneyTime = this.getTotalTime(req.body.source, req.body.destination, minimumCarDetails.min_distance);
+
+            const bookCarObj = this.bookCar(req.body.destination, minimumCarDetails.car_id,totalJourneyTime);
+
+            bookCarObj.then((result) => {
+                if (result == true){
+                    res.json({
+                        car_id:minimumCarDetails.car_id,
+                        total_time: totalJourneyTime
+                    });
+                }else{
+                    res.json({});
+                }
+            });
+        } else {
+            res.json({});
+        }
+    });
+
+}
+
+
 exports.getEmptyCars = () => {
     return helperFn.getEmptyCars().then((result) => {
         return result;

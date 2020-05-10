@@ -1,0 +1,22 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+
+  "env": {
+    "es6": true
+  },
+  "plugins": [
+    "markdown"
+  ],
+  "overrides": [
+    {
+      "files": ["*README.md"],
+      "rules": {
+        "camelcase": "off",
+        "skipBlankLines": "off",
+        "ignoreComments": 1
+      }
+    }
+  ]
+}
