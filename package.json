@@ -24,6 +24,7 @@
     "minimist": "^1.2.5",
     "minimist-options": "^4.0.2",
     "morgan": "^1.10.0",
+    "newman": "^5.0.0",
     "supertest": "^4.0.2",
     "swagger-ui-express": "^4.1.4"
   },
