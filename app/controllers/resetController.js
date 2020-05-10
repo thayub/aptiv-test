@@ -1,14 +1,15 @@
-const helperFn = require('../../app/helper/default');
+const helperFn = require('../services/default');
+const resetService = require('../services/default');
 
 
 exports.resetCarDetails = (req, res, next) => {
 
-    console.log("in reset controller");
-
-    const resetVar = helperFn.resetCarDetails()
+    const resetVar = resetService.resetCarDetails()
     resetVar.then((result) => {
-        res.status(200).json({
-            message: 'The car details have been reset'
-        });
+        if (result == true){
+            res.status(200).json({
+                message: 'The car details have been reset'
+            });
+        }
     }).catch(err => next(err));
 };

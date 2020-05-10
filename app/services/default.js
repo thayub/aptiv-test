@@ -107,6 +107,7 @@ exports.incrementTimeFn = () => {
  * @return {Promise} - Promise object which resolves after updating the Data JSON
  */
 exports.bookCar = (carId, finalGridPosition, bookingTime) => {
+
     return new Promise((resolve, reject) => {
         this.getCarById(carId).then((car) => {
             // updating car details
@@ -144,6 +145,7 @@ exports.getFunctionData = () => {
  * @return {Promise} - The car object from the functionData in memory
  */
 exports.getCarById = (carId) => {
+
     const carData = new Promise((resolve, reject) => {
         resolve(functionData.carsData.find(car => car.id === carId));
     });

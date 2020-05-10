@@ -1,13 +1,15 @@
-const helperFn = require('../../app/helper/default');
+const helperFn = require('../services/default');
+const tickService = require('../services/tickService');
 
 
 
 exports.incrementTime = (req, res, next) => {
-    helperFn.incrementTimeFn()
-        .then((result) => {
+
+    const tickServiceRes = tickService.incrementTimeFn();
+
+    tickServiceRes.then((result) => {
             res.json({
                 timeUp: result
             });
-        })
-        .catch(err => next(err));
+    }).catch(err => next(err));
 };

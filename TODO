@@ -1,11 +1,11 @@
-- time until last reset
-- JOI schema to check x, y in the incoming json
-- spec for
-    - tick
-    - booking
-    - helper
-- helper break up
-- helper break up and spec
-- services breakup
-- services spec
-- Adding Jenkins file
+[5 m]   - time until last reset                                     -> Done
+[10 m]  - JOI schema to check x, y in the incoming json
+        - spec for
+[10 m]      - tick = full                                           -> Done
+[10 m]      - booking = one more function                           -> Done
+[30 m]      - helper = all functions                                -> Done
+[5 m]   - Adding Jenkins file                                       -> Done
+[15 m]  - Adding more test in python or using manhattan thing       -> [API contract testing]
+[10 m]  - Final write up and check
+[60 m]  - Controller test cases or move to services
+[30 m]  - Automatic swagger documentation

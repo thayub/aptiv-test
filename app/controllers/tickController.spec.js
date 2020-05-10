@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../../app');
-const helperFn = require('../helper/default');
+const helperFn = require('../services/default');
 
 
 describe('test POST /api/tick', () => {

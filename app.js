@@ -1,7 +1,7 @@
 const express = require('express');
 const initialConfig = require('./config/config.js');
 const routes = require('./app/routes');
-const helpers = require('./app/helper/default');
+const helpers = require('./app/services/default');
 var swaggerUi = require('swagger-ui-express'), swaggerDocument = require('./swagger.json');
 
 

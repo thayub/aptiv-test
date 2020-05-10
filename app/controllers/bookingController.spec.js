@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../../app');
 const bookingController = require('./bookingController');
-const helperFn = require('../../app/helper/default');
+const helperFn = require('../services/default');
 
 
 describe('test POST /api/book', () => {
@@ -14,6 +14,53 @@ describe('test POST /api/book', () => {
                 console.log(res.body);
                 console.log("-=-=-=-=-=-=-");
                 expect(res.body.message).toBe('The input is malformed, kindly check the structure');
+                done();
+            });
+    });
+});
+
+
+describe('test POST /api/book', () => {
+    // CURRENT STATE TO BE CHECKED WITH
+    const mockState = {
+        timeUp: 4,
+        initialPosition: [0, 0],
+        cars: 2,
+        carsData: [
+            {
+                id: 1,
+                x: 2,
+                y: 4,
+                available: false,
+                timeRemaining: 1
+            },
+            {
+                id: 2,
+                x: 1,
+                y: 4,
+                available: false,
+                timeRemaining: 4
+            },
+            {
+                id: 3,
+                x: 4,
+                y: 4,
+                available: true,
+                timeRemaining: 0
+            }
+        ]
+    };
+
+    helperFn.setFunctionData(mockState);
+
+    it('should return 200 and booked car json as response ', (done) => {
+        request(app)
+            .post('/api/book')
+            .send({ "source": {"x":2, "y":0}, "destination":{"x":5, "y":4} })
+            .expect(200)
+            .then((res) => {
+                expect(res.body.car_id).toBe(3);
+                expect(res.body.total_time).toBe(13);
                 done();
             });
     });
