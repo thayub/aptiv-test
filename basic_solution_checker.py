@@ -1,7 +1,7 @@
 import requests
 import json
 
-server_url = 'http://localhost:3000/api'
+server_url = 'http://localhost:8080/api'
 
 
 def tick(n=1):
