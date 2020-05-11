@@ -11,8 +11,6 @@ describe('test POST /api/book', () => {
             .send({ destination: {} })
             .expect(400)
             .then((res) => {
-                console.log(res.body);
-                console.log("-=-=-=-=-=-=-");
                 expect(res.body.message).toBe('The input is malformed, kindly check the structure');
                 done();
             });

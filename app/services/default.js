@@ -28,7 +28,6 @@ exports.initialProcessData = (config) => {
     for (let i = 0; i < config.cars; i += 1) {
         functionData.carsData.push(this.initCar(i));
     }
-    console.log(functionData);
   };
 
 /**
@@ -63,8 +62,6 @@ exports.calculateDist = (source, destination) => {
  */
 exports.resetCarDetails = () => {
     return new Promise((resolve, reject) => {
-        console.log(functionData);
-        console.log("----------");
         for (let i = 0; i < functionData.carsData.length; i += 1) {
             functionData.carsData[i] = this.initCar(i);
         }

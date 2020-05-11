@@ -1,7 +1,4 @@
-const helperFn = require('../services/default');
 const tickService = require('../services/tickService');
-
-
 
 exports.incrementTime = (req, res, next) => {
 

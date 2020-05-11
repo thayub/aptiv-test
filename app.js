@@ -3,11 +3,14 @@ const initialConfig = require('./config/config.js');
 const routes = require('./app/routes');
 const helpers = require('./app/services/default');
 const cors = require('cors');
+
 var swaggerUi = require('swagger-ui-express'), swaggerDocument = require('./docs/swagger.json');
+var morgan = require('morgan');
+var winston = require('winston');
 
 
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
+
 
 // Initializing the app
 const app = express();
@@ -23,8 +26,9 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(morgan('short'));
 app.use(cors());
+
+
 // Adding routes
 app.use('/api', routes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));

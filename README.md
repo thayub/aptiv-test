@@ -92,27 +92,10 @@ $ npm run test:cover
 ```
 
 sample output of the above command is as follows
-```
-----------------------------|---------|----------|---------|---------|-------------------
-File                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
-----------------------------|---------|----------|---------|---------|-------------------
-All files                   |    96.5 |    77.27 |   92.31 |   96.38 |
- aptiv-test                 |     100 |      100 |     100 |     100 |
-  app.js                    |     100 |      100 |     100 |     100 |
- aptiv-test/app             |     100 |      100 |     100 |     100 |
-  routes.js                 |     100 |      100 |     100 |     100 |
- aptiv-test/app/controllers |   86.84 |       70 |   72.73 |   86.84 |
-  bookingController.js      |   86.96 |       75 |      80 |   86.96 | 38-44
-  resetController.js        |    87.5 |       50 |   66.67 |    87.5 | 14
-  tickController.js         |   85.71 |      100 |   66.67 |   85.71 | 14
- aptiv-test/app/services    |     100 |    83.33 |     100 |     100 |
-  bookingService.js         |     100 |       75 |     100 |     100 | 23
-  default.js                |     100 |      100 |     100 |     100 |
-  tickService.js            |     100 |      100 |     100 |     100 |
- aptiv-test/config          |     100 |      100 |     100 |     100 |
-  config.js                 |     100 |      100 |     100 |     100 |
-----------------------------|---------|----------|---------|---------|-------------------
-```
+
+
+![Test Coverage](./docs/test_coverage.png)
+
 ### 2.3 - API contract testing
 - We use newman with the postman collection JSON to test the API contract testing
 - This helps in verifying if there are any changes in the API usage or calling , helping us to
@@ -123,27 +106,8 @@ The get test coverage, run the following command
 $ npm run test:contract
 ```
 The sample output of the above command is as follows
-```
-┌─────────────────────────┬──────────────────┬──────────────────┐
-│                         │         executed │           failed │
-├─────────────────────────┼──────────────────┼──────────────────┤
-│              iterations │                1 │                0 │
-├─────────────────────────┼──────────────────┼──────────────────┤
-│                requests │                4 │                0 │
-├─────────────────────────┼──────────────────┼──────────────────┤
-│            test-scripts │                3 │                0 │
-├─────────────────────────┼──────────────────┼──────────────────┤
-│      prerequest-scripts │                0 │                0 │
-├─────────────────────────┼──────────────────┼──────────────────┤
-│              assertions │                6 │                0 │
-├─────────────────────────┴──────────────────┴──────────────────┤
-│ total run duration: 174ms                                     │
-├───────────────────────────────────────────────────────────────┤
-│ total data received: 330B (approx)                            │
-├───────────────────────────────────────────────────────────────┤
-│ average response time: 21ms [min: 4ms, max: 71ms, s.d.: 28ms] │
-└───────────────────────────────────────────────────────────────┘
-```
+
+![API contract testing using newman](./docs/newman_result.png)
 
 ### 2.4 - Lint tests:
 - `eslint` is the tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
@@ -188,6 +152,34 @@ $ docker-compose up -d
 
 ![Swagger UI](./docs/swagger_ui.png)
 
+># 4. Logging
+### Winston
+- `winston` is added to the project
+
+The sample log has been implemented in `bookingService.js`
+```
+ info: {"car_id":1,"total_time":3} {"meta":{"service":"booking-service"},"service":"taxi-service"}
+```
+
+
+># 5. Enhancements:
+### Automatic Swagger Generator
+- This will help in uniform development of the APIs
+
+### Global error handler
+- This will help in bubbling any error in the application to be handled by a common method
+- This makes centralized logging of errors and tracing of the error flow easier
+
+### Sentry integration
+- Building up on the global error handler, Integration to services like Sentry will give us real time metrics on errors and other events happening in the application
+
+### More hooks
+- Adding more hooks with git will help enhance quality of code
+- It also helps in catching errors / inconsistencies early in the development cycle
+
+### Global error constants
+- Global error constants help in uniformity of code
+- It also helps in debugging issues faster
 
 
 ## Built With

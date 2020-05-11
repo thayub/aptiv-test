@@ -1,7 +1,7 @@
 const Joi = require("@hapi/joi");
 const helperFn = require('../services/default');
-const errorMessage = require('http-errors');
 const bookingService = require('../services/bookingService');
+
 
 
 const schema = Joi.object().keys({
@@ -9,7 +9,7 @@ const schema = Joi.object().keys({
     destination: Joi.required()
 });
 
-exports.createBooking =  (req, res, next) => {
+exports.createBooking =  (req, res) => {
 
     const result = schema.validate(req.body);
 
@@ -20,7 +20,6 @@ exports.createBooking =  (req, res, next) => {
     }else{
         const response  = bookingService.createBooking(req, res);
         return response;
-
     }
 }
 

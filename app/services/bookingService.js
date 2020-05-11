@@ -1,4 +1,6 @@
 const helperFn = require('../services/default');
+const winston = require('winston');
+const logger = require('../../lib/logger');
 
 
 
@@ -13,7 +15,13 @@ exports.createBooking = (req, res) => {
             const bookCarObj = this.bookCar(req.body.destination, minimumCarDetails.car_id,totalJourneyTime);
 
             bookCarObj.then((result) => {
+
                 if (result == true){
+                    // sample logging :
+                    logger.log({
+                        level: 'info', message: JSON.stringify({car_id:minimumCarDetails.car_id, total_time: totalJourneyTime}), meta: { service: 'booking-service' },
+                    });
+
                     res.json({
                         car_id:minimumCarDetails.car_id,
                         total_time: totalJourneyTime

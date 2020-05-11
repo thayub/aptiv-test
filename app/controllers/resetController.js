@@ -1,4 +1,3 @@
-const helperFn = require('../services/default');
 const resetService = require('../services/default');
 
 
